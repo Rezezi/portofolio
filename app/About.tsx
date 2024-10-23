@@ -76,7 +76,7 @@ const About: React.FC = () => {
             <Image src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width={100} height={100} className="w-full h-full animate-spin-slow" />
           </div>
           <div className="relative w-16 h-16 md:w-24 md:h-24">
-            <Image src="/Laravel.png" alt="Laravel" width={100} height={100} className="w-full h-full animate-spin-slow" />
+            <Image src="/Lara.png" alt="Laravel" width={100} height={100} className="w-full h-full animate-spin-slow" />
           </div>
           <div className="relative w-16 h-16 md:w-24 md:h-24">
             <Image src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" width={100} height={100} className="w-full h-full animate-spin-slow" />
