@@ -1,19 +1,20 @@
-import type { Config } from "tailwindcss";
+import { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx,mdx}",
+    "./components/**/*.{ts,tsx,mdx}",
+    "./app/**/*.{ts,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--background)",  // Menggunakan CSS variable untuk latar belakang
+        foreground: "var(--foreground)",  // Menggunakan CSS variable untuk teks
       },
     },
   },
   plugins: [],
 };
+
 export default config;
