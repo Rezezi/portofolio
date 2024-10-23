@@ -19,7 +19,7 @@ const ProjectPage: React.FC = () => {
       title: 'To Do List',
       description: 'A simple and intuitive to-do list application to help you manage your tasks efficiently.',
       image: '/todolist.png', // Image for To Do List
-      githubLink: 'https://github.com/yourusername/todo-list' // Replace with your GitHub link
+      githubLink: 'https://github.com/Rezezi/todo-list' // Replace with your GitHub link
     },
     {
       title: 'Perpustakaan',

@@ -3,14 +3,18 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { Fireworks } from 'fireworks-js'; // Import fireworks-js
+import { Typewriter } from 'react-simple-typewriter';
 
 const First: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentGreeting, setCurrentGreeting] = useState("Hi, I'm Axcel 👋");
   const [slideIn, setSlideIn] = useState(true); // Control slide-in effect
   const containerRef = useRef<HTMLDivElement>(null); // Reference for the fireworks container
 
-  const greetings = ["Hi, I'm Axcel 👋", " Hi, I'm ,a ,Backend Developer 👋 ", "Hi, I'm ,a ,Game Developer 👋"];
+  const greetings = [
+    "Hi, I'm Axcel 👋",
+    "Hi, I'm a Backend Developer 👋",
+    "Hi, I'm a Game Developer 👋",
+  ];
 
   useEffect(() => {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -22,7 +26,6 @@ const First: React.FC = () => {
 
       setTimeout(() => {
         index = (index + 1) % greetings.length; // Increment index and loop back
-        setCurrentGreeting(greetings[index]); // Update greeting
         setSlideIn(true); // Start slide in
       }, 500); // This matches the CSS slide duration
     }, 3500); // Change greeting every 3.5 seconds
@@ -82,12 +85,16 @@ const First: React.FC = () => {
 
         {/* Text Section */}
         <div className="md:w-1/2 w-full text-center md:text-left">
-          <h1
-            className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-snug mb-4 transition-all duration-500 transform ${
-              slideIn ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
-            }`}
-          >
-            {currentGreeting}
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-snug mb-4 transition-all duration-500 transform ${slideIn ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
+            <Typewriter
+              words={greetings} // Use the greetings array for typewriter effect
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={80}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
           </h1>
           <p className="text-base sm:text-lg md:text-xl font-light mb-6">
             I&apos;m a passionate developer building amazing experiences on the web. Let&apos;s create something incredible together!

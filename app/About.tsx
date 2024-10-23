@@ -70,13 +70,13 @@ const About: React.FC = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
           My Skills
         </h2>
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-6"> {/* Increased gap from gap-8 to gap-6 */}
           {/* Rotating Skill Logos */}
           <div className="relative w-16 h-16 md:w-24 md:h-24">
             <Image src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width={100} height={100} className="w-full h-full animate-spin-slow" />
           </div>
           <div className="relative w-16 h-16 md:w-24 md:h-24">
-            <Image src="/laravel.png" alt="Laravel" width={100} height={100} className="w-full h-full animate-spin-slow" />
+            <Image src="/Laravel.png" alt="Laravel" width={100} height={100} className="w-full h-full animate-spin-slow" />
           </div>
           <div className="relative w-16 h-16 md:w-24 md:h-24">
             <Image src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" width={100} height={100} className="w-full h-full animate-spin-slow" />
@@ -89,6 +89,15 @@ const About: React.FC = () => {
           </div>
           <div className="relative w-16 h-16 md:w-24 md:h-24">
             <Image src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg" alt="Vue.js" width={100} height={100} className="w-full h-full animate-spin-slow" />
+          </div>
+          <div className="relative w-16 h-16 md:w-24 md:h-24">
+            <Image src="/html.png" alt="Html" width={100} height={100} className="w-full h-full animate-spin-slow" />
+          </div>
+          <div className="relative w-16 h-16 md:w-24 md:h-24">
+            <Image src="/css.png" alt="Css" width={100} height={100} className="w-full h-full animate-spin-slow" />
+          </div>
+          <div className="relative w-16 h-16 md:w-24 md:h-24">
+            <Image src="/flu.png" alt="Fluter" width={100} height={100} className="w-full h-full animate-spin-slow" />
           </div>
         </div>
       </div>
