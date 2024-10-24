@@ -1,26 +1,16 @@
 "use client";
-import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
 const About: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
   // Intersection Observer for scroll animations
   const { ref: aboutRef, inView: aboutInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: skillsRef, inView: skillsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  useEffect(() => {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(isDark);
-  }, []);
-
   return (
     <section
       id="about"
-      className={`min-h-screen flex flex-col justify-center items-center py-20 px-5 transition-all duration-500 relative overflow-hidden ${
-        isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'
-      }`}
+      className={`min-h-screen flex flex-col justify-center items-center py-20 px-5 transition-all duration-500 relative overflow-hidden bg-gray-900 text-white`} // Fixed dark background and white text
     >
       {/* About Me Section */}
       <div

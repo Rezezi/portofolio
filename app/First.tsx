@@ -36,7 +36,7 @@ const First: React.FC = () => {
     if (containerRef.current) {
       const fireworks = new Fireworks(containerRef.current, {
         hue: { min: 0, max: 345 },
-        delay: { min: 40, max: 60 }, // Slower fireworks launch delay
+        delay: { min: 60, max: 80 }, // Slower fireworks launch delay
         rocketsPoint: { min: 50, max: 50 },
         particles: 150,
         traceLength: 3,

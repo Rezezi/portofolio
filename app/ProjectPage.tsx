@@ -1,18 +1,14 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
 const ProjectPage: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Set isDarkMode ke true untuk langsung menggunakan mode gelap
+  const [isDarkMode] = useState(true); 
 
   // Intersection Observer for scroll animations
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-
-  useEffect(() => {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(isDark);
-  }, []);
 
   const projects = [
     {
@@ -27,7 +23,7 @@ const ProjectPage: React.FC = () => {
       description: 'This is an employee data project that I made with Laravel Simple Crud',
       image: '/data.png', // Image for Perpustakaan
       githubLink: 'https://github.com/rezezi/laravel', // GitHub link
-     // Add your Vercel link here
+      // Add your Vercel link here
     },
     {
       title: 'Project Gabut',
@@ -48,7 +44,7 @@ const ProjectPage: React.FC = () => {
   return (
     <section
       id='projects'
-      className={`min-h-screen py-20 px-5 transition-all duration-500 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}
+      className={`min-h-screen py-20 px-5 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`} // Menghilangkan transition
     >
       <div ref={ref} className={`text-center mb-10 transform transition-all duration-1000 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h1 className='text-4xl md:text-5xl font-bold mb-4'>My Projects</h1>
