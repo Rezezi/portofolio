@@ -18,10 +18,16 @@ const Contact = () => {
           href="https://wa.me/087878254877"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 bg-green-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md"
+          className="w-16 h-16 bg-green-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
           aria-label="WhatsApp"
         >
-          <Image src="/wa.png" alt="WhatsApp" width={32} height={32} />
+          <Image
+            src="/wa.png"
+            alt="WhatsApp"
+            width={32}
+            height={32}
+            className="group-hover:animate-spin-slow"
+          />
         </a>
 
         {/* GitHub */}
@@ -29,10 +35,16 @@ const Contact = () => {
           href="https://github.com/rezezi"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 bg-gray-800 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md"
+          className="w-16 h-16 bg-gray-800 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
           aria-label="GitHub"
         >
-          <Image src="/git.png" alt="GitHub" width={32} height={32} />
+          <Image
+            src="/git.png"
+            alt="GitHub"
+            width={32}
+            height={32}
+            className="group-hover:animate-spin-slow"
+          />
         </a>
 
         {/* Instagram */}
@@ -40,10 +52,16 @@ const Contact = () => {
           href="https://www.instagram.com/rezezi_axcel/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 bg-pink-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md"
+          className="w-16 h-16 bg-pink-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
           aria-label="Instagram"
         >
-          <Image src="/ig.png" alt="Instagram" width={32} height={32} />
+          <Image
+            src="/ig.png"
+            alt="Instagram"
+            width={32}
+            height={32}
+            className="group-hover:animate-spin-slow"
+          />
         </a>
 
         {/* YouTube */}
@@ -51,10 +69,16 @@ const Contact = () => {
           href="https://www.youtube.com/channel/UCYThcBfYhYLV1UfA6kp_imw"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md"
+          className="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
           aria-label="YouTube"
         >
-          <Image src="/youtube.png" alt="YouTube" width={32} height={32} />
+          <Image
+            src="/youtube.png"
+            alt="YouTube"
+            width={32}
+            height={32}
+            className="group-hover:animate-spin-slow"
+          />
         </a>
 
         {/* Email */}
@@ -62,10 +86,16 @@ const Contact = () => {
           href="mailto:axcelrezezi@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 bg-blue-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md"
+          className="w-16 h-16 bg-blue-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
           aria-label="Email"
         >
-          <Image src="/email.png" alt="Email" width={32} height={32} />
+          <Image
+            src="/email.png"
+            alt="Email"
+            width={32}
+            height={32}
+            className="group-hover:animate-spin-slow"
+          />
         </a>
       </div>
     </section>

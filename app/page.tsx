@@ -15,6 +15,7 @@ const Home: React.FC = () => {
   <ProjectPage/>
   <Contact/>
   <Chatbot/>
+  
     </div>
   );
 };
