@@ -8,6 +8,20 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
 
+  // List of questions users can ask
+  const instructions = [
+    "Who made this? (Siapa yang buat?)",
+    "Dimana dia sekolah?",
+    "Apa bahasa program yang dia suka?",
+    "Hobi dia apa?",
+    "Status dia apa?",
+    "Dia siapa?",
+    "Dia ngapain di sekolah?",
+    "How are you?",
+    "What can you do?",
+    "What's your purpose here?",
+  ];
+
   // Handle opening/closing the chatbot
   const toggleChatBot = () => {
     setIsOpen(!isOpen);
@@ -34,18 +48,24 @@ const ChatBot = () => {
     } else if (message.includes('dimana dia sekolah')) {
       return "Axcel goes to school at SMKN 21 Jakarta.";
     } else if (message.includes('apa bahasa program yang dia suka')) {
-      return "Java Script & Type Script.";
+      return "JavaScript & TypeScript.";
     } else if (message.includes('hobi dia apa')) {
       return "Gaming, Coding & Playing basketball.";
     } else if (message.includes('status dia apa')) {
       return "Jomlo dan siswa.";
     } else if (message.includes('dia siapa')) {
-        return "dia axcel pemilik portofolio ini.";
-      } else if (message.includes('siapa yang jago ngoding')) {
-        return "gak tau lah  .";
-      }
-    
-    return null;
+      return "Dia Axcel, pemilik portofolio ini.";
+    } else if (message.includes('dia ngapain di sekolah')) {
+      return "Ngoding & tidur.";
+    } else if (message.includes('how are you')) {
+      return "I'm here and ready to assist!";
+    } else if (message.includes('what can you do')) {
+      return "I can answer questions about Axcel and general inquiries.";
+    } else if (message.includes('what\'s your purpose here')) {
+      return "I'm here to help you learn more about Axcel and this website.";
+    }
+
+    return "I'm not sure about that. Try asking something else!";
   };
 
   // Handling the "Enter" key to send message
@@ -81,6 +101,17 @@ const ChatBot = () => {
 
           {/* Chat Messages */}
           <div className="flex-grow p-4 overflow-y-auto">
+            {/* Instructions */}
+            <div className="my-2 p-2 rounded-lg bg-gray-300 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-200">
+              <strong>Anda bisa bertanya tentang:</strong>
+              <ul className="list-disc list-inside">
+                {instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Display messages */}
             {messages.map((msg, index) => (
               <div key={index} className={`my-2 p-2 rounded-lg ${index % 2 === 0 ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-100 dark:bg-blue-900'}`}>
                 {msg}
