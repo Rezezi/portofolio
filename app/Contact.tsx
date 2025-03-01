@@ -1,105 +1,39 @@
-import Image from 'next/image';
+"use client";
+import { FaGithub, FaInstagram, FaYoutube, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-const Contact = () => {
+const Connect = () => {
   return (
-    <section
-      id="contact"
-      className="bg-gray-900 text-white py-16 px-5 flex flex-col justify-center items-center rounded-lg shadow-md"
-    >
-      <h2 className="text-3xl font-bold mb-4 text-center">Get In Touch</h2>
-      <p className="text-md text-center max-w-md mb-10">
-        Feel free to reach out through any of the platforms below. I&apos;d love to connect with you!
+    <div className="bg-black text-white py-16 text-center">
+      <h2 className="text-3xl font-bold text-green-400">Lets Connect</h2>
+      <p className="text-gray-400 mt-2">
+        Reach out to me on any platform below. I’d love to collaborate and chat with you!
       </p>
-
-      {/* Contact Links */}
-      <div className="flex flex-wrap justify-center gap-5">
-        {/* WhatsApp */}
-        <a
-          href="https://wa.me/087878254877"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-16 h-16 bg-green-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
-          aria-label="WhatsApp"
-        >
-          <Image
-            src="/wa.png"
-            alt="WhatsApp"
-            width={32}
-            height={32}
-            className="group-hover:animate-spin-slow"
-          />
-        </a>
-
-        {/* GitHub */}
-        <a
-          href="https://github.com/rezezi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-16 h-16 bg-gray-800 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
-          aria-label="GitHub"
-        >
-          <Image
-            src="/git.png"
-            alt="GitHub"
-            width={32}
-            height={32}
-            className="group-hover:animate-spin-slow"
-          />
-        </a>
-
-        {/* Instagram */}
-        <a
-          href="https://www.instagram.com/rezezi_axcel/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-16 h-16 bg-pink-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
-          aria-label="Instagram"
-        >
-          <Image
-            src="/ig.png"
-            alt="Instagram"
-            width={32}
-            height={32}
-            className="group-hover:animate-spin-slow"
-          />
-        </a>
-
-        {/* YouTube */}
-        <a
-          href="https://www.youtube.com/channel/UCYThcBfYhYLV1UfA6kp_imw"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
-          aria-label="YouTube"
-        >
-          <Image
-            src="/youtube.png"
-            alt="YouTube"
-            width={32}
-            height={32}
-            className="group-hover:animate-spin-slow"
-          />
-        </a>
-
-        {/* Email */}
-        <a
-          href="mailto:axcelrezezi@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-16 h-16 bg-blue-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-300 shadow-md group"
-          aria-label="Email"
-        >
-          <Image
-            src="/email.png"
-            alt="Email"
-            width={32}
-            height={32}
-            className="group-hover:animate-spin-slow"
-          />
-        </a>
+      <div className="flex justify-center gap-6 mt-6">
+        {[
+          { icon: <FaWhatsapp />, color: "bg-green-500", hover: "hover:bg-green-600" },
+          { icon: <FaGithub />, color: "bg-gray-800", hover: "hover:bg-gray-700" },
+          { icon: <FaInstagram />, color: "bg-pink-500", hover: "hover:bg-pink-600" },
+          { icon: <FaYoutube />, color: "bg-red-500", hover: "hover:bg-red-600" },
+          { icon: <FaEnvelope />, color: "bg-blue-500", hover: "hover:bg-blue-600" },
+        ].map((item, index) => (
+          <motion.a
+            key={index}
+            href="#"
+            className={`${item.color} p-4 rounded-full text-white text-2xl ${item.hover}`}
+            whileHover={{ scale: 1.2, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
+            animate={{
+              y: [0, -5, 0], 
+              transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            }}
+          >
+            {item.icon}
+          </motion.a>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Contact;
+export default Connect;

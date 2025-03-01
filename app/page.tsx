@@ -1,17 +1,18 @@
 import About from "./About";
 import First from "./First";
 import "./globals.css";
-import Navbar from "./Navbar";
 import ProjectPage from "./ProjectPage";
 import Contact from "./Contact";
 import Chatbot from "./ChatBot";
+import Skill from "./Skills";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Navbar/>
+   
   <First/>
   <About/>
+  <Skill/>
   <ProjectPage/>
   <Contact/>
   <Chatbot/>

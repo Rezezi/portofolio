@@ -1,97 +1,131 @@
 "use client";
-import { useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import VanillaTilt from "vanilla-tilt";
+import Image from "next/image";
 
-const ProjectPage: React.FC = () => {
-  // Set isDarkMode ke true untuk langsung menggunakan mode gelap
-  const [isDarkMode] = useState(true); 
+const projects = [
+  {
+    title: "PPLG Class",
+    description: "A project from the PPLG class.",
+    image: "/pplg.png",
+    githubLink: "https://github.com/Rezezi/pplg",
+    vercelLink: "https://kelas-five.vercel.app/",
+  },
+  {
+    title: "UTS Project",
+    description: "My midterm exam project, a fully responsive web app.",
+    image: "/images.png",
+    githubLink: "https://github.com/Rezezi/uts-axcel",
+    vercelLink: "https://uts-axcel.vercel.app/",
+  },
+  {
+    title: "Book Hotel",
+    description: "A hotel booking system with modern UI.",
+    image: "/hotel.png",
+    githubLink: "https://github.com/Rezezi/travella",
+    vercelLink: "https://vercel.com/rezezis-projects/book-hotel",
+  },
+  {
+    title: "Gig Flow",
+    description: "A freelance platform with an interactive UI.",
+    image: "/data.png",
+    githubLink: "https://github.com/rezezi/laravel",
+  }
+];
 
-  // Intersection Observer for scroll animations
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+const ProjectCard: React.FC<{ project: (typeof projects)[0] }> = ({ project }) => {
+  const tiltRef = useRef(null);
 
-  const projects = [
-    {
-      title: 'To Do List',
-      description: 'A simple and intuitive to-do list application to help you manage your tasks efficiently.',
-      image: '/todolist.png', // Image for To Do List
-      githubLink: 'https://github.com/Rezezi/todo-list', // GitHub link
-      vercelLink: 'https://todo-list-seven-iota-60.vercel.app/' // Add your Vercel link here
-    },
-    {
-      title: 'gigflow employee data',
-      description: 'This is an employee data project that I made with Laravel Simple Crud',
-      image: '/data.png', // Image for Perpustakaan
-      githubLink: 'https://github.com/rezezi/laravel', // GitHub link
-      // Add your Vercel link here
-    },
-    {
-      title: 'Project Gabut',
-      description: 'A fun project showcasing various features and functionalities with an engaging UI.',
-      image: '/gabut.png', // Image for Project Gabut
-      githubLink: 'https://github.com/rezezi/semangat',
-      vercelLink: 'https://vercel.com/rezezis-projects/klik' // Add your Vercel link here
-    },
-    {
-      title: 'madding pplg',
-      description: 'This is a madding project from the PPLG class.',
-      image: '/mad.png', // Image for the new project
-      githubLink: 'https://github.com/rezezi/new-awesome-project', // GitHub link
-      vercelLink: 'https://vercel.com/rezezis-projects/madding' // Add your Vercel link here
-    },
-  ];
+  useEffect(() => {
+    if (tiltRef.current) {
+      VanillaTilt.init(tiltRef.current, {
+        max: 20,
+        speed: 300,
+        glare: true,
+        "max-glare": 0.4,
+      });
+    }
+  }, []);
 
   return (
-    <section
-      id='projects'
-      className={`min-h-screen py-20 px-5 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`} // Menghilangkan transition
+    <motion.div
+      ref={tiltRef}
+      className="relative bg-gray-900 p-6 rounded-xl shadow-lg flex flex-col items-center text-white transform transition-all"
+      whileHover={{
+        scale: 1.05,
+        rotateX: 10,
+        rotateY: 10,
+        boxShadow: "0px 15px 30px rgba(0, 255, 130, 0.2)",
+      }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      <div ref={ref} className={`text-center mb-10 transform transition-all duration-1000 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <h1 className='text-4xl md:text-5xl font-bold mb-4'>My Projects</h1>
-        <p className='text-lg md:text-xl font-light leading-relaxed mb-6'>
-          Here are some of the projects I&apos;ve worked on, each designed with unique functionalities and aesthetics.
-        </p>
+      <Image
+        src={project.image}
+        alt={project.title}
+        width={300}
+        height={200}
+        className="w-full h-48 object-cover rounded-lg transition-transform duration-500 transform hover:scale-110"
+      />
+      <h2 className="text-2xl font-bold mt-4">{project.title}</h2>
+      <p className="text-gray-400 text-sm text-center mt-2">
+        {project.description}
+      </p>
+      <div className="flex gap-3 mt-4">
+        <a
+          href={project.githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        >
+          GitHub
+        </a>
+        {project.vercelLink && (
+          <a
+            href={project.vercelLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+          >
+            View
+          </a>
+        )}
       </div>
+    </motion.div>
+  );
+};
 
-      <div className='flex flex-wrap justify-center gap-8'>
+const ProjectPage = () => {
+  return (
+    <section
+      id="projects"
+      className="min-h-screen bg-black text-white py-20 px-5 flex flex-col items-center"
+    >
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold text-green-400">My Projects</h1>
+        <p className="text-lg text-gray-400 mt-2">
+          Here are some of my featured projects.
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         {projects.map((project, index) => (
-          <div key={index} className='relative w-full max-w-xs transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-4'>
-            <div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105'>
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={300}
-                height={200}
-                className='w-full h-48 object-cover transition-transform duration-500 transform hover:scale-110'
-              />
-              <div className='p-4'>
-                <h2 className='text-xl font-bold mb-2'>{project.title}</h2>
-                <p className='text-gray-600 dark:text-gray-300 mb-4'>{project.description}</p>
-                <div className='flex gap-2'>
-                  <a
-                    href={project.githubLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition'
-                  >
-                    View on GitHub
-                  </a>
-                  {project.vercelLink && (
-                    <a
-                      href={project.vercelLink}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='inline-block px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition'
-                    >
-                      View on Vercel
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProjectCard key={index} project={project} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
