@@ -65,7 +65,7 @@ const First = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <Key icon={<FaGithub />} link="https://github.comhttps://github.com/Rezezi" label="GitHub" />
+        <Key icon={<FaGithub />} link="https://github.com/Rezezi" label="GitHub" />
         <Key icon={<FaInstagram />} link="https://www.instagram.com/rezezi_axcel/" label="Instagram" />
         <Key icon={<FaLinkedin />} link="https://linkedin.com" label="LinkedIn" />
         <Key icon={<FaTwitter />} link="https://twitter.com" label="Twitter" />
