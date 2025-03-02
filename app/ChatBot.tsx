@@ -1,74 +1,50 @@
 "use client";
 import { useState } from 'react';
-import { AiOutlineClose, AiOutlineSend } from 'react-icons/ai';
-import Image from 'next/image'; // Assuming you're using Next.js for images
+import { AiOutlineClose, AiOutlineSend, AiOutlineRobot } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
 
-  // List of questions users can ask
-  const instructions = [
-    "Who made this? (Siapa yang buat?)",
-    "Dimana dia sekolah?",
-    "Apa bahasa program yang dia suka?",
-    "Hobi dia apa?",
-    "Status dia apa?",
-    "Dia siapa?",
-    "Dia ngapain di sekolah?",
-    "How are you?",
-    "What can you do?",
-    "What's your purpose here?",
-  ];
-
-  // Handle opening/closing the chatbot
   const toggleChatBot = () => {
     setIsOpen(!isOpen);
   };
 
-  // Handle sending messages
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (input.trim() !== '') {
-      setMessages([...messages, input]);
+      const userMessage = input;
+      setMessages([...messages, `You: ${userMessage}`]);
       setInput('');
 
-      // Check for specific questions about Axcel
-      const botReply = getBotReply(input.trim().toLowerCase());
-      if (botReply) {
-        setMessages((prevMessages) => [...prevMessages, botReply]);
-      }
+      const botReply = await getBotReply(userMessage);
+      setMessages(prevMessages => [...prevMessages, `Bot: ${botReply}`]);
     }
   };
 
-  // Simple bot responses based on user input
-  const getBotReply = (message: string) => {
-    if (message.includes('who made this') || message.includes('siapa yang buat')) {
-      return "This website was created by Axcel.";
-    } else if (message.includes('dimana dia sekolah')) {
-      return "Axcel goes to school at SMKN 21 Jakarta.";
-    } else if (message.includes('apa bahasa program yang dia suka')) {
-      return "JavaScript & TypeScript.";
-    } else if (message.includes('hobi dia apa')) {
-      return "Gaming, Coding & Playing basketball.";
-    } else if (message.includes('status dia apa')) {
-      return "Jomlo dan siswa.";
-    } else if (message.includes('dia siapa')) {
-      return "Dia Axcel, pemilik portofolio ini.";
-    } else if (message.includes('dia ngapain di sekolah')) {
-      return "Ngoding & tidur.";
-    } else if (message.includes('how are you')) {
-      return "I'm here and ready to assist!";
-    } else if (message.includes('what can you do')) {
-      return "I can answer questions about Axcel and general inquiries.";
-    } else if (message.includes('what\'s your purpose here')) {
-      return "I'm here to help you learn more about Axcel and this website.";
+  const getBotReply = async (message: string) => {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('who is axcel')) {
+      return "Axcel is a passionate developer and tech enthusiast.";
+    } else if (lowerMessage.includes('favorite programming language')) {
+      return "Axcel loves JavaScript, TypeScript, and Python.";
+    } else if (lowerMessage.includes('hobby')) {
+      return "Gaming, coding, and playing basketball!";
+    } else if (lowerMessage.includes('status')) {
+      return "singgle .";
+    } else if (lowerMessage.includes('favorite framework')) {
+      return "Axcel really likes Next.js and Laravel.";
+    } else if (lowerMessage.includes('dream job')) {
+      return "Axcel wants to be a top software engineer or tech entrepreneur.";
+    } else if (lowerMessage.includes('favorite color')) {
+      return "Axcel loves black and red, just like ac milan club football!";
     }
-
-    return "I'm not sure about that. Try asking something else!";
+    
+    return "I can answer anything about Axcel and technology. Try asking something else!";
   };
 
-  // Handling the "Enter" key to send message
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       sendMessage();
@@ -77,66 +53,78 @@ const ChatBot = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {/* Chatbot Icon to open/close */}
       {!isOpen && (
-        <div
-          className="p-3 bg-blue-600 text-white rounded-full shadow-lg cursor-pointer transition-transform transform hover:scale-110"
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200 }}
+          className="p-4 bg-green-600 text-white rounded-full shadow-lg cursor-pointer"
           onClick={toggleChatBot}
         >
-          <Image src="/chatbot.png" alt="ChatBot Icon" width={30} height={30} className="rounded-full" /> {/* Adjust size */}
-        </div>
+          <AiOutlineRobot className="text-3xl" />
+        </motion.div>
       )}
 
-      {/* Chatbot Window */}
       {isOpen && (
-        <div className="w-64 h-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col"> {/* Adjust size */}
-          {/* Header */}
-          <div className="bg-blue-600 p-4 flex justify-between items-center">
-            <h3 className="text-white font-bold">Chat</h3>
-            <AiOutlineClose
-              onClick={toggleChatBot}
-              className="text-white text-xl cursor-pointer transition-transform transform hover:scale-110"
-            />
-          </div>
-
-          {/* Chat Messages */}
-          <div className="flex-grow p-4 overflow-y-auto">
-            {/* Instructions */}
-            <div className="my-2 p-2 rounded-lg bg-gray-300 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-200">
-              <strong>Anda bisa bertanya tentang:</strong>
-              <ul className="list-disc list-inside">
-                {instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', damping: 10 }}
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
+        >
+          <div className="w-96 h-[500px] bg-gray-900 text-white rounded-lg shadow-lg flex flex-col overflow-hidden">
+            <div className="bg-green-600 p-4 flex justify-between items-center">
+              <h3 className="font-bold">Chat with AxcelBot</h3>
+              <AiOutlineClose
+                onClick={toggleChatBot}
+                className="text-white text-xl cursor-pointer hover:scale-110"
+              />
+            </div>
+            
+            <div className="p-4 text-sm text-gray-300">
+              <p>You can ask me about Axcel, such as:</p>
+              <ul className="list-disc ml-4">
+                <li>Who is Axcel?</li>
+                <li>What is Axcel s favorite programming language?</li>
+                <li>What are Axcel s hobbies?</li>
+                <li>What is Axcel s status?</li>
+                <li>What is Axcel s dream job?</li>
+                <li>What is Axcel s favorite color?</li>
               </ul>
             </div>
 
-            {/* Display messages */}
-            {messages.map((msg, index) => (
-              <div key={index} className={`my-2 p-2 rounded-lg ${index % 2 === 0 ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-100 dark:bg-blue-900'}`}>
-                {msg}
-              </div>
-            ))}
-          </div>
+            <div className="flex-grow p-4 overflow-y-auto">
+              {messages.map((msg, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={`my-2 p-2 rounded-lg ${msg.startsWith('You:') ? 'bg-green-700' : 'bg-gray-700'}`}
+                >
+                  {msg}
+                </motion.div>
+              ))}
+            </div>
 
-          {/* Input Area */}
-          <div className="p-4 flex items-center">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="flex-grow px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 outline-none" // Adjust padding
-              placeholder="Ask something..."
-            />
-            <button
-              onClick={sendMessage}
-              className="ml-2 p-2 bg-blue-600 text-white rounded-full shadow-lg transition-transform transform hover:scale-110"
-            >
-              <AiOutlineSend className="text-xl" />
-            </button>
+            <div className="p-4 flex items-center bg-gray-800">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-grow px-3 py-2 rounded-lg bg-gray-700 text-white outline-none"
+                placeholder="Ask something..."
+              />
+              <button
+                onClick={sendMessage}
+                className="ml-2 p-3 bg-green-600 text-white rounded-full hover:scale-110"
+              >
+                <AiOutlineSend className="text-xl" />
+              </button>
+            </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

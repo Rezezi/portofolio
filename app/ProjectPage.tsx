@@ -56,13 +56,14 @@ const ProjectCard: React.FC<{ project: (typeof projects)[0] }> = ({ project }) =
         scale: 1.05,
         rotateX: 10,
         rotateY: 10,
-        boxShadow: "0px 15px 30px rgba(0, 255, 130, 0.2)",
+        boxShadow: "0px 15px 30px rgba(0, 255, 130, 0)",
       }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <div className="absolute inset-0 bg-blue-500 opacity-20 blur-xl rounded-xl"></div>
       <Image
         src={project.image}
         alt={project.title}
@@ -70,11 +71,11 @@ const ProjectCard: React.FC<{ project: (typeof projects)[0] }> = ({ project }) =
         height={200}
         className="w-full h-48 object-cover rounded-lg transition-transform duration-500 transform hover:scale-110"
       />
-      <h2 className="text-2xl font-bold mt-4">{project.title}</h2>
-      <p className="text-gray-400 text-sm text-center mt-2">
+      <h2 className="text-2xl font-bold mt-4 relative z-10">{project.title}</h2>
+      <p className="text-gray-400 text-sm text-center mt-2 relative z-10">
         {project.description}
       </p>
-      <div className="flex gap-3 mt-4">
+      <div className="flex gap-3 mt-4 relative z-10">
         <a
           href={project.githubLink}
           target="_blank"
