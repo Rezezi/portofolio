@@ -39,9 +39,9 @@ const About: React.FC = () => {
           About Me
         </h1>
         <p className="text-lg md:text-xl font-light leading-relaxed mb-8">
-          Hi, I&apos;m Axcel, a passionate **Full-Stack Developer** who loves
+          Hi, I&apos;m Axcel, a passionate Full-Stack Developer who loves
           creating modern and efficient applications. Always exploring new
-          technologies to build **better digital experiences**.
+          technologies to build better digital experiences.
         </p>
 
         <div
